@@ -29,7 +29,8 @@ export default function SimpleContainer() {
           <br />
           <br />
           <Routes>
-            <Route path="/" element={<Task />}>
+            <Route path="/">
+              <Route index element={<Task />} />
               <Route path=":state" element={<Task />} />
             </Route>
           </Routes>
