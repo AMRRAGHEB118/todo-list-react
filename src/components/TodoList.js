@@ -10,7 +10,7 @@ import Buttons from "./ButtonGroup";
 import { btnsContext } from "../context/btnsContext";
 import buttonsData from "../buttonsData.json";
 import { Route, Routes } from "react-router-dom";
-import Task from "./Task";
+import Tasks from "./Tasks";
 // import Done from "./Done";
 // import NontDone from "./NotDone";
 
@@ -30,8 +30,8 @@ export default function SimpleContainer() {
           <br />
           <Routes>
             <Route path="/">
-              <Route index element={<Task />} />
-              <Route path=":state" element={<Task />} />
+              <Route index element={<Tasks />} />
+              <Route path=":state" element={<Tasks />} />
             </Route>
           </Routes>
         </CardContent>
