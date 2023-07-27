@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "text": "الكل",
+    "color": "",
+    "state": "all"
+  },
+  {
+    "id": 2,
+    "text": "منجز",
+    "color": "",
+    "state": "done"
+  },
+  {
+    "id": 3,
+    "text": "غير منجز",
+    "color": "",
+    "state": "not_done"
+  }
+]
