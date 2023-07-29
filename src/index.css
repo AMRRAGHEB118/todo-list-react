@@ -1,8 +1,47 @@
-@import url("https://fonts.googleapis.com/css2?family=Lateef:wght@200;300;400;500;600;700;800&display=swap");
+@font-face {
+  font-family: "Lateef", serif;
+  src: url("/public/fonts/Lateef-ExtraLight.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Lateef", serif;
+  src: url("/public/fonts/Lateef-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Lateef";
+  src: url("/public/fonts/Lateef-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Lateef";
+  src: url("/public/fonts/Lateef-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Lateef";
+  src: url("/public/fonts/Lateef-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Lateef";
+  src: url("/public/fonts/Lateef-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Lateef";
+  src: url("/public/fonts/Lateef-ExtraBold.ttf");
+  font-weight: 800;
+}
 
 body {
   margin: 0;
-  font-family: 'Lateef', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;
