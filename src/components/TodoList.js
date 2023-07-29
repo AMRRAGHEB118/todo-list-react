@@ -11,8 +11,7 @@ import { btnsContext } from "../context/btnsContext";
 import buttonsData from "../buttonsData.json";
 import { Route, Routes } from "react-router-dom";
 import Tasks from "./Tasks";
-// import Done from "./Done";
-// import NontDone from "./NotDone";
+import TaskForm from "./TaskForm";
 
 export default function SimpleContainer() {
   return (
@@ -35,7 +34,9 @@ export default function SimpleContainer() {
             </Route>
           </Routes>
         </CardContent>
-        <CardActions></CardActions>
+        <CardActions>
+          <TaskForm />
+        </CardActions>
       </Card>
     </Container>
   );
