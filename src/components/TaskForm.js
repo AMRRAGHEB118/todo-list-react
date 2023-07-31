@@ -9,7 +9,6 @@ export default function TaskForm() {
             id="filled-basic"
             label="أضف مهمة جديدة"
             variant="filled"
-            dir="rtl"
             sx={{ width: "100%", height: "100%" }}
           />
         </Grid>
