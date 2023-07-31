@@ -1,3 +1,3 @@
-export default function Task({text}) {
-    return <><h1>{text}</h1></>
+export default function Task({title, content, state}) {
+    return <><h1>{title}</h1></>
 }
