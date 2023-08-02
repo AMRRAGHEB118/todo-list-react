@@ -3,18 +3,18 @@
         "id": 1,
         "title": "صباح الخير",
         "content": "hello",
-        "state": "processing"
+        "state": "Progress"
     },
     {
         "id": 2,
         "title": "صباح الخير",
         "content": "hello",
-        "state": "processing"
+        "state": "Progress"
     },
     {
         "id": 3,
         "title": "صباح الخير",
         "content": "hello",
-        "state": "processing"
+        "state": "Progress"
     }
 ]

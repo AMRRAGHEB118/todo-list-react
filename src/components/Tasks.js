@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
-import Card from "@mui/material/Card";
-import { CardContent, Typography } from "@mui/material";
+import {Card, CardContent, Typography } from "@mui/material";
 import tasks from "../tasks.json";
 import Task from "./Task";
 
