@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom";
-import {Card, CardContent, Typography } from "@mui/material";
-import tasks from "../tasks.json";
+import { Card, CardContent, Typography } from "@mui/material";
+
 import Task from "./Task";
 
-export default function Tasks() {
+export default function Tasks({ tasks }) {
   const { state } = useParams();
   let tasksLoader = [];
   if (!state || state === "all") {
-    tasksLoader = tasks.map((task) => <Task key={task.id} title={task.title} content={task.content} is_complete={task.is_complete} />);
+    tasksLoader = tasks.map((task) => (
+      <Task
+        key={task.id}
+        title={task.title}
+        content={task.content}
+        is_complete={task.is_complete}
+      />
+    ));
   }
 
   return (
