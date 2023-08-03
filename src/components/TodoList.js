@@ -55,6 +55,13 @@ export default function TodoList() {
     set_title_input("");
   };
 
+  const handle_check = (id) => {
+    const updated_tasks = tasks.map((t) => {
+      return t.id === id ? { ...t, is_complete: !t.is_complete } : t;
+    });
+    set_tasks(updated_tasks);
+  };
+
   return (
     <Container maxWidth="sm">
       <Card>
@@ -70,8 +77,14 @@ export default function TodoList() {
           <br />
           <Routes>
             <Route path="/">
-              <Route index element={<Tasks tasks={tasks} />} />
-              <Route path=":state" element={<Tasks tasks={tasks} />} />
+              <Route
+                index
+                element={<Tasks tasks={tasks} handle_check={handle_check} />}
+              />
+              <Route
+                path=":state"
+                element={<Tasks tasks={tasks} handle_check={handle_check} />}
+              />
             </Route>
           </Routes>
         </CardContent>

@@ -3,17 +3,12 @@ import { Card, CardContent, Typography } from "@mui/material";
 
 import Task from "./Task";
 
-export default function Tasks({ tasks }) {
+export default function Tasks({ tasks, handle_check }) {
   const { state } = useParams();
   let tasksLoader = [];
   if (!state || state === "all") {
     tasksLoader = tasks.map((task) => (
-      <Task
-        key={task.id}
-        title={task.title}
-        content={task.content}
-        is_complete={task.is_complete}
-      />
+      <Task key={task.id} task={task} handle_check={handle_check} />
     ));
   }
 
