@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Task({ title, content, state }) {
   return (
-    <Card sx={{padding:"10px", margin: "10px" }}>
+    <Card sx={{ padding: "10px", margin: "10px" }}>
       <Grid container>
         <Grid item xs={8}>
           <Typography
@@ -21,23 +21,29 @@ export default function Task({ title, content, state }) {
             {content}
           </Typography>
         </Grid>
-        <Grid display="flex" alignItems="center" justifyContent="space-around" item xs={4}>
+        <Grid
+          display="flex"
+          alignItems="center"
+          justifyContent="space-around"
+          item
+          xs={4}
+        >
           <IconButton
-            aria-label="delete"
+            aria-label="check"
             sx={{
               color: "#A2FF86",
               background: "white",
-              border: "3px solid #A2FF86",
+              border: "2px solid #A2FF86",
             }}
           >
             <CheckIcon sx={{ fontSize: "14px" }} />
           </IconButton>
           <IconButton
-            aria-label="delete"
+            aria-label="edit"
             sx={{
               color: "#4FC0D0",
               background: "white",
-              border: "3px solid #4FC0D0",
+              border: "2px solid #4FC0D0",
             }}
           >
             <ModeEditOutlineIcon sx={{ fontSize: "14px" }} />
@@ -47,7 +53,7 @@ export default function Task({ title, content, state }) {
             sx={{
               color: "#FF8989",
               background: "white",
-              border: "3px solid #FF8989",
+              border: "2px solid #FF8989",
             }}
           >
             <DeleteIcon sx={{ fontSize: "14px" }} />
