@@ -7,7 +7,7 @@ export default function Tasks() {
   const { state } = useParams();
   let tasksLoader = [];
   if (!state || state === "all") {
-    tasksLoader = tasks.map((task) => <Task key={task.id} title={task.title} content={task.content} state={task.state} />);
+    tasksLoader = tasks.map((task) => <Task key={task.id} title={task.title} content={task.content} is_complete={task.is_complete} />);
   }
 
   return (

@@ -3,7 +3,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function Task({ title, content, state }) {
+export default function Task({ title, content, is_complete }) {
   return (
     <Card sx={{ padding: "10px", margin: "10px" }}>
       <Grid container>
@@ -31,8 +31,8 @@ export default function Task({ title, content, state }) {
           <IconButton
             aria-label="check"
             sx={{
-              color: "#A2FF86",
-              background: "white",
+              color: is_complete ? "white" : "#A2FF86",
+              background: is_complete ? "#A2FF86" : "white",
               border: "2px solid #A2FF86",
             }}
           >
