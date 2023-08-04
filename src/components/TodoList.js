@@ -12,38 +12,14 @@ import buttonsData from "../buttonsData.json";
 import { Route, Routes } from "react-router-dom";
 import Tasks from "./Tasks";
 import TaskForm from "./TaskForm";
-import { useState } from "react";
+import { TasksContext } from "../context/tasksContext";
+import { useState, useContext } from "react";
 
 export default function TodoList() {
-  const initial_tasks = [
-    {
-      id: 1,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: true,
-    },
-    {
-      id: 2,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: true,
-    },
-    {
-      id: 3,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: true,
-    },
-    {
-      id: 4,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: false,
-    },
-  ];
+  const { tasks, set_tasks } = useContext(TasksContext);
 
-  const [tasks, set_tasks] = useState(initial_tasks);
   const [title_input, set_title_input] = useState("");
+
   const handle_add_task = () => {
     const new_task = {
       id: tasks.length + 1,
@@ -53,13 +29,6 @@ export default function TodoList() {
     };
     set_tasks([...tasks, new_task]);
     set_title_input("");
-  };
-
-  const handle_check = (id) => {
-    const updated_tasks = tasks.map((t) => {
-      return t.id === id ? { ...t, is_complete: !t.is_complete } : t;
-    });
-    set_tasks(updated_tasks);
   };
 
   return (
@@ -77,14 +46,8 @@ export default function TodoList() {
           <br />
           <Routes>
             <Route path="/">
-              <Route
-                index
-                element={<Tasks tasks={tasks} handle_check={handle_check} />}
-              />
-              <Route
-                path=":state"
-                element={<Tasks tasks={tasks} handle_check={handle_check} />}
-              />
+              <Route index element={<Tasks />} />
+              <Route path=":state" element={<Tasks />} />
             </Route>
           </Routes>
         </CardContent>

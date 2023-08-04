@@ -2,13 +2,18 @@ import { Card, Grid, Typography, IconButton } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useContext } from "react";
+import { TasksContext } from "../context/tasksContext";
 
-export default function Task({
-  task: { id, title, content, is_complete },
-  handle_check,
-}) {
-  const handle_check_btn = () => {
-    handle_check(id);
+export default function Task({ task: { id, title, content, is_complete } }) {
+
+  const { tasks, set_tasks } = useContext(TasksContext);
+
+  const handle_check = (id) => {
+    const updated_tasks = tasks.map((t) => {
+      return t.id === id ? { ...t, is_complete: !t.is_complete } : t;
+    });
+    set_tasks(updated_tasks);
   };
 
   return (
@@ -36,7 +41,9 @@ export default function Task({
           xs={4}
         >
           <IconButton
-            onClick={handle_check_btn}
+            onClick={() => {
+              handle_check(id);
+            }}
             aria-label="check"
             sx={{
               color: is_complete ? "white" : "#A2FF86",

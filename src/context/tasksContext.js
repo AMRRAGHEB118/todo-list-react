@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export let taskContext = createContext([]);
+export let TasksContext = createContext([]);

@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Card, CardContent, Typography } from "@mui/material";
 import Task from "./Task";
+import { useContext } from "react";
+import { TasksContext } from "../context/tasksContext";
 
-export default function Tasks({ tasks, handle_check }) {
+export default function Tasks({ handle_check }) {
+  const {tasks} = useContext(TasksContext)
   const { state } = useParams();
   let tasksLoader = [];
   let tasks_to_be_rendered;
@@ -18,7 +21,7 @@ export default function Tasks({ tasks, handle_check }) {
     );
 
   tasksLoader = tasks_to_be_rendered.map((task) => (
-    <Task key={task.id} task={task} handle_check={handle_check} />
+    <Task key={task.id} task={task} />
   ));
   
   return (
