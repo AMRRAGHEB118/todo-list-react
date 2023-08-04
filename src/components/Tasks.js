@@ -4,7 +4,7 @@ import Task from "./Task";
 import { useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
 
-export default function Tasks({ handle_check }) {
+export default function Tasks() {
   const {tasks} = useContext(TasksContext)
   const { state } = useParams();
   let tasksLoader = [];

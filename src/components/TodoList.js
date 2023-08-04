@@ -12,25 +12,8 @@ import buttonsData from "../buttonsData.json";
 import { Route, Routes } from "react-router-dom";
 import Tasks from "./Tasks";
 import TaskForm from "./TaskForm";
-import { TasksContext } from "../context/tasksContext";
-import { useState, useContext } from "react";
 
 export default function TodoList() {
-  const { tasks, set_tasks } = useContext(TasksContext);
-
-  const [title_input, set_title_input] = useState("");
-
-  const handle_add_task = () => {
-    const new_task = {
-      id: tasks.length + 1,
-      title: title_input,
-      content: "hello",
-      is_complete: false,
-    };
-    set_tasks([...tasks, new_task]);
-    set_title_input("");
-  };
-
   return (
     <Container maxWidth="sm">
       <Card>
@@ -52,11 +35,7 @@ export default function TodoList() {
           </Routes>
         </CardContent>
         <CardActions>
-          <TaskForm
-            set_title_input={set_title_input}
-            title_input={title_input}
-            handle_add_task={handle_add_task}
-          />
+          <TaskForm />
         </CardActions>
       </Card>
     </Container>

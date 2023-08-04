@@ -1,10 +1,23 @@
 import { Grid, TextField, Button } from "@mui/material";
+import { useState, useContext } from "react";
+import { TasksContext } from "../context/tasksContext";
 
-export default function TaskForm({
-  title_input,
-  set_title_input,
-  handle_add_task,
-}) {
+export default function TaskForm() {
+
+  const { tasks, set_tasks } = useContext(TasksContext);
+  const [title_input, set_title_input] = useState("");
+
+  const handle_add_task = () => {
+    const new_task = {
+      id: tasks.length + 1,
+      title: title_input,
+      content: "hello",
+      is_complete: false,
+    };
+    set_tasks([...tasks, new_task]);
+    set_title_input("");
+  };
+
   return (
     <>
       <Grid container spacing={1}>
