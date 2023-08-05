@@ -17,14 +17,14 @@ const Transition = forwardRef(function Transition(props, ref) {
 export default function DeletionModel({
   open_delete_model,
   set_show_delete_model,
-  task_id,
-  set_task_id,
+  task_info,
+  set_task_info,
 }) {
   const { tasks, set_tasks } = useContext(TasksContext);
 
-  const handle_delete_task = (task_id) => {
+  const handle_delete_task = (task_info) => {
     const new_tasks = tasks.filter((t) => {
-      return t.id !== task_id;
+      return t.id !== task_info;
     });
     set_tasks(new_tasks);
     localStorage.setItem("tasks", JSON.stringify(new_tasks));
@@ -32,7 +32,7 @@ export default function DeletionModel({
   };
 
   const handle_delete_close = () => {
-    set_task_id("");
+    set_task_info("");
     set_show_delete_model(false);
   };
 
@@ -55,7 +55,7 @@ export default function DeletionModel({
         <Button onClick={handle_delete_close}>أغلاق</Button>
         <Button
           onClick={() => {
-            handle_delete_task(task_id);
+            handle_delete_task(task_info);
           }}
         >
           حذف

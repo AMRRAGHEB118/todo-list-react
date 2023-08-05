@@ -4,7 +4,7 @@ import Task from "./Task";
 import { useContext, useMemo } from "react";
 import { TasksContext } from "../context/tasksContext";
 
-export default function Tasks({ set_show_delete_model, set_task_id }) {
+export default function Tasks({ set_show_delete_model, set_open_edit_model, set_task_info, set_updated_task }) {
   const { tasks } = useContext(TasksContext);
   const { state } = useParams();
 
@@ -28,7 +28,7 @@ export default function Tasks({ set_show_delete_model, set_task_id }) {
   }
 
   tasksLoader = tasks_to_be_rendered.map((task) => (
-    <Task set_show_delete_model={set_show_delete_model} set_task_id={set_task_id} key={task.id} task={task} />
+    <Task set_updated_task={set_updated_task} set_show_delete_model={set_show_delete_model} set_task_info={set_task_info} set_open_edit_model={set_open_edit_model} key={task.id} task={task} />
   ));
 
   return (
