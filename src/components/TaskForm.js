@@ -17,7 +17,7 @@ export default function TaskForm() {
     const new_task = {
       id: tasks.length + 1,
       title: title_input,
-      content: "hello",
+      content: "",
       is_complete: false,
     };
     set_tasks([...tasks, new_task]);
