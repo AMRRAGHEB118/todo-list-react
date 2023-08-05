@@ -3,15 +3,15 @@ import { useState, useContext, useEffect } from "react";
 import { TasksContext } from "../context/tasksContext";
 
 export default function TaskForm() {
-
   const { tasks, set_tasks } = useContext(TasksContext);
   const [title_input, set_title_input] = useState("");
 
-useEffect(()=> {
-if(localStorage.getItem('tasks')) {
-  set_tasks(JSON.parse(localStorage.getItem('tasks')))
-}
-},[])
+  useEffect(() => {
+    if (localStorage.getItem("tasks")) {
+      set_tasks(JSON.parse(localStorage.getItem("tasks")));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handle_add_task = () => {
     const new_task = {
@@ -21,7 +21,7 @@ if(localStorage.getItem('tasks')) {
       is_complete: false,
     };
     set_tasks([...tasks, new_task]);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, new_task]))
+    localStorage.setItem("tasks", JSON.stringify([...tasks, new_task]));
     set_title_input("");
   };
 
@@ -43,6 +43,7 @@ if(localStorage.getItem('tasks')) {
         <Grid item xs={4}>
           <Button
             onClick={handle_add_task}
+            disabled={title_input.length < 3}
             sx={{ width: "100%", height: "100%" }}
             color="primary"
             variant="contained"
