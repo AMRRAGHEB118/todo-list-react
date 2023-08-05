@@ -11,32 +11,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const initial_tasks = [
-    {
-      id: 1,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: true,
-    },
-    {
-      id: 2,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: true,
-    },
-    {
-      id: 3,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: true,
-    },
-    {
-      id: 4,
-      title: "صباح الخير",
-      content: "hello",
-      is_complete: false,
-    },
-  ];
+  const initial_tasks = [];
   const [tasks, set_tasks] = useState(initial_tasks);
 
   return (
