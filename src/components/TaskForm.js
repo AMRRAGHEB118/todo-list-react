@@ -1,11 +1,17 @@
 import { Grid, TextField, Button } from "@mui/material";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { TasksContext } from "../context/tasksContext";
 
 export default function TaskForm() {
 
   const { tasks, set_tasks } = useContext(TasksContext);
   const [title_input, set_title_input] = useState("");
+
+useEffect(()=> {
+if(localStorage.getItem('tasks')) {
+  set_tasks(JSON.parse(localStorage.getItem('tasks')))
+}
+},[])
 
   const handle_add_task = () => {
     const new_task = {
@@ -15,6 +21,7 @@ export default function TaskForm() {
       is_complete: false,
     };
     set_tasks([...tasks, new_task]);
+    localStorage.setItem("tasks", JSON.stringify([...tasks, new_task]))
     set_title_input("");
   };
 

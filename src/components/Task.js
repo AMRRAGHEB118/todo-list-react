@@ -33,6 +33,7 @@ export default function Task({ task: { id, title, content, is_complete } }) {
       return t.id === id ? { ...t, is_complete: !t.is_complete } : t;
     });
     set_tasks(new_tasks);
+    localStorage.setItem("tasks", JSON.stringify(new_tasks));
   };
 
   const handle_delete_task = (id) => {
@@ -40,6 +41,7 @@ export default function Task({ task: { id, title, content, is_complete } }) {
       return t.id !== id;
     });
     set_tasks(new_tasks);
+    localStorage.setItem("tasks", JSON.stringify(new_tasks));
   };
 
   const handle_edit_task = (id) => {
@@ -47,6 +49,7 @@ export default function Task({ task: { id, title, content, is_complete } }) {
       return t.id === id ? { ...t, ...updated_task } : t;
     });
     set_tasks(new_tasks);
+    localStorage.setItem("tasks", JSON.stringify(new_tasks));
     set_open_edit_model(false);
   };
 
