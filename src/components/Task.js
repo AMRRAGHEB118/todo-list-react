@@ -6,39 +6,28 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogContentText,
   DialogActions,
   Button,
-  Slide,
   TextField,
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
-import { useState, useContext, forwardRef } from "react";
+import { useState, useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
 
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-export default function Task({ task: { id, title, content, is_complete } }) {
+export default function Task({
+  task: { id, title, content, is_complete },
+  set_show_delete_model,
+  set_task_id,
+}) {
   const { tasks, set_tasks } = useContext(TasksContext);
-  const [open_delete_model, set_open_delete_model] = useState(false);
   const [open_edit_model, set_open_edit_model] = useState(false);
   const [updated_task, set_updated_task] = useState({ title, content });
 
   const handle_check = (id) => {
     const new_tasks = tasks.map((t) => {
       return t.id === id ? { ...t, is_complete: !t.is_complete } : t;
-    });
-    set_tasks(new_tasks);
-    localStorage.setItem("tasks", JSON.stringify(new_tasks));
-  };
-
-  const handle_delete_task = (id) => {
-    const new_tasks = tasks.filter((t) => {
-      return t.id !== id;
     });
     set_tasks(new_tasks);
     localStorage.setItem("tasks", JSON.stringify(new_tasks));
@@ -54,11 +43,8 @@ export default function Task({ task: { id, title, content, is_complete } }) {
   };
 
   const handle_delete_click_open = () => {
-    set_open_delete_model(true);
-  };
-
-  const handle_delete_close = () => {
-    set_open_delete_model(false);
+    set_task_id(id);
+    set_show_delete_model(true);
   };
 
   const handle_edit_click_open = () => {
@@ -70,31 +56,6 @@ export default function Task({ task: { id, title, content, is_complete } }) {
   };
   return (
     <>
-      <Dialog
-        open={open_delete_model}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handle_delete_close}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle>{"حذف المهمة؟"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            "تحذير: أنت على وشك إزالة هذه المهمة بشكل دائم. لا يمكن التراجع عن
-            هذا الإجراء. هل أنت متأكد أنك تريد المتابعة؟"
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handle_delete_close}>أغلاق</Button>
-          <Button
-            onClick={() => {
-              handle_delete_task(id);
-            }}
-          >
-            حذف
-          </Button>
-        </DialogActions>
-      </Dialog>
       <Dialog open={open_edit_model} onClose={handle_edit_click_close}>
         <DialogTitle>تعديل مهمة</DialogTitle>
         <DialogContent>
