@@ -1,23 +1,19 @@
-import {
-  Card,
-  Grid,
-  Typography,
-  IconButton,
-} from "@mui/material";
+import { Card, Grid, Typography, IconButton } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
-import {  useContext } from "react";
+import { useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
+import { TaskInfoContext } from "../context/taskInfoContext";
 
 export default function Task({
   task: { id, title, content, is_complete },
   set_show_delete_model,
   set_open_edit_model,
-  set_task_info,
-  set_updated_task
+  set_updated_task,
 }) {
   const { tasks, set_tasks } = useContext(TasksContext);
+  const { set_task_info } = useContext(TaskInfoContext);
 
   const handle_check = (id) => {
     const new_tasks = tasks.map((t) => {
@@ -33,7 +29,7 @@ export default function Task({
   };
 
   const handle_edit_click_open = () => {
-    set_updated_task({id, title, content})
+    set_updated_task({ id, title, content });
     set_open_edit_model(true);
   };
 

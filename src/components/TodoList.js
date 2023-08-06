@@ -15,6 +15,7 @@ import Tasks from "./Tasks";
 import TaskForm from "./TaskForm";
 import DeletionModel from "./DeletionModel";
 import UpdationModel from "./UpdationModel";
+import { TaskInfoContext } from "../context/taskInfoContext";
 
 export default function TodoList() {
   const [open_delete_model, set_show_delete_model] = useState(false);
@@ -23,64 +24,62 @@ export default function TodoList() {
   const [updated_task, set_updated_task] = useState("");
   return (
     <>
-      <DeletionModel
-        open_delete_model={open_delete_model}
-        set_show_delete_model={set_show_delete_model}
-        task_info={task_info}
-        set_task_info={set_task_info}
-      />
-      <UpdationModel
-        open_edit_model={open_edit_model}
-        set_open_edit_model={set_open_edit_model}
-        updated_task={updated_task}
-        set_updated_task={set_updated_task}
-      />
-      <Container maxWidth="sm">
-        <Card>
-          <CardContent sx={{ textAlign: "center" }}>
-            <Typography variant="h2">مهامي</Typography>
-            <br />
-            <Divider />
-            <br />
-            <btnsContext.Provider value={buttonsData}>
-              <Buttons />
-            </btnsContext.Provider>
-            <br />
-            <br />
-            <Routes>
-              <Route path="/">
-                <Route
-                  index
-                  element={
-                    <Tasks
-                      open_delete_model={open_delete_model}
-                      set_show_delete_model={set_show_delete_model}
-                      set_open_edit_model={set_open_edit_model}
-                      set_task_info={set_task_info}
-                      set_updated_task={set_updated_task}
-                    />
-                  }
-                />
-                <Route
-                  path=":state"
-                  element={
-                    <Tasks
-                      open_delete_model={open_delete_model}
-                      set_show_delete_model={set_show_delete_model}
-                      set_open_edit_model={set_open_edit_model}
-                      set_task_info={set_task_info}
-                      set_updated_task={set_updated_task}
-                    />
-                  }
-                />
-              </Route>
-            </Routes>
-          </CardContent>
-          <CardActions>
-            <TaskForm />
-          </CardActions>
-        </Card>
-      </Container>
+      <TaskInfoContext.Provider value={{ task_info, set_task_info }}>
+        <DeletionModel
+          open_delete_model={open_delete_model}
+          set_show_delete_model={set_show_delete_model}
+        />
+        <UpdationModel
+          open_edit_model={open_edit_model}
+          set_open_edit_model={set_open_edit_model}
+          updated_task={updated_task}
+          set_updated_task={set_updated_task}
+        />
+        <Container maxWidth="sm">
+          <Card>
+            <CardContent sx={{ textAlign: "center" }}>
+              <Typography variant="h2">مهامي</Typography>
+              <br />
+              <Divider />
+              <br />
+              <btnsContext.Provider value={buttonsData}>
+                <Buttons />
+              </btnsContext.Provider>
+              <br />
+              <br />
+              <Routes>
+                <Route path="/">
+                  <Route
+                    index
+                    element={
+                      <Tasks
+                        open_delete_model={open_delete_model}
+                        set_show_delete_model={set_show_delete_model}
+                        set_open_edit_model={set_open_edit_model}
+                        set_updated_task={set_updated_task}
+                      />
+                    }
+                  />
+                  <Route
+                    path=":state"
+                    element={
+                      <Tasks
+                        open_delete_model={open_delete_model}
+                        set_show_delete_model={set_show_delete_model}
+                        set_open_edit_model={set_open_edit_model}
+                        set_updated_task={set_updated_task}
+                      />
+                    }
+                  />
+                </Route>
+              </Routes>
+            </CardContent>
+            <CardActions>
+              <TaskForm />
+            </CardActions>
+          </Card>
+        </Container>
+      </TaskInfoContext.Provider>
     </>
   );
 }

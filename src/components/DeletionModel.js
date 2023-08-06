@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { useContext, forwardRef } from "react";
 import { TasksContext } from "../context/tasksContext";
+import { TaskInfoContext } from "../context/taskInfoContext";
+
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -17,10 +19,9 @@ const Transition = forwardRef(function Transition(props, ref) {
 export default function DeletionModel({
   open_delete_model,
   set_show_delete_model,
-  task_info,
-  set_task_info,
 }) {
   const { tasks, set_tasks } = useContext(TasksContext);
+  const {task_info, set_task_info} = useContext(TaskInfoContext)
 
   const handle_delete_task = (task_info) => {
     const new_tasks = tasks.filter((t) => {
