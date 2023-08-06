@@ -7,15 +7,14 @@ import { TasksContext } from "../context/tasksContext";
 import { TaskInfoContext } from "../context/taskInfoContext";
 import { OpenDeleteModelContext } from "../context/openDeleteModelContext";
 import { UpdatedTaskContext } from "../context/updatedTaskContext";
+import { OpenEditModelContext } from "../context/openEditModelContext";
 
-export default function Task({
-  task: { id, title, content, is_complete },
-  set_open_edit_model,
-}) {
+export default function Task({ task: { id, title, content, is_complete } }) {
   const { tasks, set_tasks } = useContext(TasksContext);
   const { set_task_info } = useContext(TaskInfoContext);
   const { set_show_delete_model } = useContext(OpenDeleteModelContext);
   const { set_updated_task } = useContext(UpdatedTaskContext);
+  const { set_open_edit_model } = useContext(OpenEditModelContext);
 
   const handle_check = (id) => {
     const new_tasks = tasks.map((t) => {
