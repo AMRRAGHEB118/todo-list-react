@@ -9,14 +9,14 @@ import {
 
 import { useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
+import { UpdatedTaskContext } from "../context/updatedTaskContext";
 
 export default function UpdationModel({
   open_edit_model,
   set_open_edit_model,
-  updated_task,
-  set_updated_task,
 }) {
   const { tasks, set_tasks } = useContext(TasksContext);
+  const {updated_task, set_updated_task} = useContext(UpdatedTaskContext);
 
   const handle_edit_task = (id) => {
     const new_tasks = tasks.map((t) => {

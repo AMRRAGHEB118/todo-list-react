@@ -6,15 +6,16 @@ import { useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
 import { TaskInfoContext } from "../context/taskInfoContext";
 import { OpenDeleteModelContext } from "../context/openDeleteModelContext";
+import { UpdatedTaskContext } from "../context/updatedTaskContext";
 
 export default function Task({
   task: { id, title, content, is_complete },
   set_open_edit_model,
-  set_updated_task,
 }) {
   const { tasks, set_tasks } = useContext(TasksContext);
   const { set_task_info } = useContext(TaskInfoContext);
   const { set_show_delete_model } = useContext(OpenDeleteModelContext);
+  const { set_updated_task } = useContext(UpdatedTaskContext);
 
   const handle_check = (id) => {
     const new_tasks = tasks.map((t) => {

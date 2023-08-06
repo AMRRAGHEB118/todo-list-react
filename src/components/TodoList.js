@@ -17,6 +17,7 @@ import DeletionModel from "./DeletionModel";
 import UpdationModel from "./UpdationModel";
 import { TaskInfoContext } from "../context/taskInfoContext";
 import { OpenDeleteModelContext } from "../context/openDeleteModelContext";
+import { UpdatedTaskContext } from "../context/updatedTaskContext";
 
 export default function TodoList() {
   const [open_delete_model, set_show_delete_model] = useState(false);
@@ -25,6 +26,7 @@ export default function TodoList() {
   const [updated_task, set_updated_task] = useState("");
   return (
     <>
+    <UpdatedTaskContext.Provider value={{updated_task, set_updated_task}}>
       <OpenDeleteModelContext.Provider
         value={{ open_delete_model, set_show_delete_model }}
       >
@@ -33,8 +35,6 @@ export default function TodoList() {
           <UpdationModel
             open_edit_model={open_edit_model}
             set_open_edit_model={set_open_edit_model}
-            updated_task={updated_task}
-            set_updated_task={set_updated_task}
           />
           <Container maxWidth="sm">
             <Card>
@@ -55,7 +55,6 @@ export default function TodoList() {
                       element={
                         <Tasks
                           set_open_edit_model={set_open_edit_model}
-                          set_updated_task={set_updated_task}
                         />
                       }
                     />
@@ -64,7 +63,6 @@ export default function TodoList() {
                       element={
                         <Tasks
                           set_open_edit_model={set_open_edit_model}
-                          set_updated_task={set_updated_task}
                         />
                       }
                     />
@@ -78,6 +76,7 @@ export default function TodoList() {
           </Container>
         </TaskInfoContext.Provider>
       </OpenDeleteModelContext.Provider>
+      </UpdatedTaskContext.Provider>
     </>
   );
 }
