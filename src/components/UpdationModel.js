@@ -26,7 +26,11 @@ export default function UpdationModel() {
     });
     set_tasks(new_tasks);
     localStorage.setItem("tasks", JSON.stringify(new_tasks));
-    set_updated_task("");
+    set_updated_task({
+      id: "",
+      title: "",
+      content: "",
+    });
     set_open_edit_model(false);
   };
 
