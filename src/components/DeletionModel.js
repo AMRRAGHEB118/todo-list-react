@@ -10,18 +10,18 @@ import {
 import { useContext, forwardRef } from "react";
 import { TasksContext } from "../context/tasksContext";
 import { TaskInfoContext } from "../context/taskInfoContext";
-
+import { OpenDeleteModelContext } from "../context/openDeleteModelContext";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function DeletionModel({
-  open_delete_model,
-  set_show_delete_model,
-}) {
+export default function DeletionModel() {
   const { tasks, set_tasks } = useContext(TasksContext);
-  const {task_info, set_task_info} = useContext(TaskInfoContext)
+  const { task_info, set_task_info } = useContext(TaskInfoContext);
+  const { open_delete_model, set_show_delete_model } = useContext(
+    OpenDeleteModelContext
+  );
 
   const handle_delete_task = (task_info) => {
     const new_tasks = tasks.filter((t) => {
