@@ -1,16 +1,18 @@
 import { Grid, TextField, Button } from "@mui/material";
 import { useState, useContext, useEffect } from "react";
 import { TasksContext } from "../context/tasksContext";
+import { useToast } from "../context/toastContext";
 
 export default function TaskForm() {
-  const { tasks, set_tasks } = useContext(TasksContext);
   const [title_input, set_title_input] = useState("");
+  const { tasks, set_tasks } = useContext(TasksContext);
+  const { show_hide_toast } = useToast()
 
   useEffect(() => {
     if (localStorage.getItem("tasks")) {
       set_tasks(JSON.parse(localStorage.getItem("tasks")));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handle_add_task = () => {
@@ -23,6 +25,7 @@ export default function TaskForm() {
     set_tasks([...tasks, new_task]);
     localStorage.setItem("tasks", JSON.stringify([...tasks, new_task]));
     set_title_input("");
+    show_hide_toast("تم أضافة المهمة بنجاح");
   };
 
   return (

@@ -11,6 +11,7 @@ import { useContext, forwardRef } from "react";
 import { TasksContext } from "../context/tasksContext";
 import { TaskInfoContext } from "../context/taskInfoContext";
 import { OpenDeleteModelContext } from "../context/openDeleteModelContext";
+import { useToast } from "../context/toastContext";
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -22,6 +23,7 @@ export default function DeletionModel() {
   const { open_delete_model, set_show_delete_model } = useContext(
     OpenDeleteModelContext
   );
+  const { show_hide_toast } = useToast()
 
   const handle_delete_task = (task_info) => {
     const new_tasks = tasks.filter((t) => {
@@ -30,6 +32,7 @@ export default function DeletionModel() {
     set_tasks(new_tasks);
     localStorage.setItem("tasks", JSON.stringify(new_tasks));
     set_show_delete_model(false);
+    show_hide_toast("تم حذف المهمة بنجاح");
   };
 
   const handle_delete_close = () => {

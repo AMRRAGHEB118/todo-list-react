@@ -11,12 +11,14 @@ import { useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
 import { UpdatedTaskContext } from "../context/updatedTaskContext";
 import { OpenEditModelContext } from "../context/openEditModelContext";
+import { useToast } from "../context/toastContext";
 
 export default function UpdationModel() {
   const { tasks, set_tasks } = useContext(TasksContext);
   const { updated_task, set_updated_task } = useContext(UpdatedTaskContext);
   const { open_edit_model, set_open_edit_model } =
     useContext(OpenEditModelContext);
+  const { show_hide_toast } = useToast()
 
   const handle_edit_task = (id) => {
     const new_tasks = tasks.map((t) => {
@@ -32,6 +34,7 @@ export default function UpdationModel() {
       content: "",
     });
     set_open_edit_model(false);
+    show_hide_toast("تم تعديل المهمة بنجاح");
   };
 
   const handle_edit_click_close = () => {
