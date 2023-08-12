@@ -1,8 +1,10 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export default function reducer(current_todos, action) {
   switch (action.type) {
     case "added": {
       const new_task = {
-        id: current_todos.length + 1,
+        id: uuidv4(),
         title: action.payload.title_input,
         content: "",
         is_complete: false,
