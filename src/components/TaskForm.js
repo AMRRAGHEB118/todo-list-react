@@ -1,11 +1,11 @@
 import { Grid, TextField, Button } from "@mui/material";
-import { useState, useContext, useEffect } from "react";
-import { TasksContext } from "../context/tasksContext";
+import { useState, useEffect } from "react";
+import { useTasks } from "../context/tasksContext";
 import { useToast } from "../context/toastContext";
 
 export default function TaskForm() {
   const [title_input, set_title_input] = useState("");
-  const { dispatch } = useContext(TasksContext);
+  const { dispatch } = useTasks();
   const { show_hide_toast } = useToast();
 
   useEffect(() => {

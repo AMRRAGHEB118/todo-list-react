@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { Card, CardContent, Typography } from "@mui/material";
 import Task from "./Task";
-import { useContext, useMemo } from "react";
-import { TasksContext } from "../context/tasksContext";
+import { useMemo } from "react";
+import { useTasks } from "../context/tasksContext";
 
 export default function Tasks() {
-  const { tasks } = useContext(TasksContext);
+  const { tasks } = useTasks();
   const { state } = useParams();
 
   let tasksLoader = [];

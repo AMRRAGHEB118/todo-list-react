@@ -8,13 +8,13 @@ import {
 } from "@mui/material";
 
 import { useContext } from "react";
-import { TasksContext } from "../context/tasksContext";
+import { useTasks } from "../context/tasksContext";
 import { UpdatedTaskContext } from "../context/updatedTaskContext";
 import { OpenEditModelContext } from "../context/openEditModelContext";
 import { useToast } from "../context/toastContext";
 
 export default function UpdationModel() {
-  const { dispatch } = useContext(TasksContext);
+  const { dispatch } = useTasks();
   const { updated_task, set_updated_task } = useContext(UpdatedTaskContext);
   const { open_edit_model, set_open_edit_model } =
     useContext(OpenEditModelContext);

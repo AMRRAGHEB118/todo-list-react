@@ -3,23 +3,26 @@ import CheckIcon from "@mui/icons-material/Check";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import { useContext } from "react";
-import { TasksContext } from "../context/tasksContext";
+import { useTasks } from "../context/tasksContext";
 import { TaskInfoContext } from "../context/taskInfoContext";
 import { OpenDeleteModelContext } from "../context/openDeleteModelContext";
 import { UpdatedTaskContext } from "../context/updatedTaskContext";
 import { OpenEditModelContext } from "../context/openEditModelContext";
 
 export default function Task({ task: { id, title, content, is_complete } }) {
-  const { dispatch } = useContext(TasksContext);
+  const { dispatch } = useTasks();
   const { set_task_info } = useContext(TaskInfoContext);
   const { set_show_delete_model } = useContext(OpenDeleteModelContext);
   const { set_updated_task } = useContext(UpdatedTaskContext);
   const { set_open_edit_model } = useContext(OpenEditModelContext);
 
   const handle_check = (id) => {
-dispatch({type: "checked", payload : {
-  id
-}})
+    dispatch({
+      type: "checked",
+      payload: {
+        id,
+      },
+    });
   };
 
   const handle_delete_click_open = () => {

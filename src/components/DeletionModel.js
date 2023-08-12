@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import { useContext, forwardRef } from "react";
-import { TasksContext } from "../context/tasksContext";
+import { useTasks } from "../context/tasksContext";
 import { TaskInfoContext } from "../context/taskInfoContext";
 import { OpenDeleteModelContext } from "../context/openDeleteModelContext";
 import { useToast } from "../context/toastContext";
@@ -18,7 +18,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function DeletionModel() {
-  const { dispatch } = useContext(TasksContext);
+  const { dispatch } = useTasks();
   const { task_info, set_task_info } = useContext(TaskInfoContext);
   const { open_delete_model, set_show_delete_model } = useContext(
     OpenDeleteModelContext
