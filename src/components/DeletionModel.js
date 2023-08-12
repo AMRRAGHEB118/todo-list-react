@@ -18,19 +18,15 @@ const Transition = forwardRef(function Transition(props, ref) {
 });
 
 export default function DeletionModel() {
-  const { tasks, set_tasks } = useContext(TasksContext);
+  const { dispatch } = useContext(TasksContext);
   const { task_info, set_task_info } = useContext(TaskInfoContext);
   const { open_delete_model, set_show_delete_model } = useContext(
     OpenDeleteModelContext
   );
-  const { show_hide_toast } = useToast()
+  const { show_hide_toast } = useToast();
 
   const handle_delete_task = (task_info) => {
-    const new_tasks = tasks.filter((t) => {
-      return t.id !== task_info;
-    });
-    set_tasks(new_tasks);
-    localStorage.setItem("tasks", JSON.stringify(new_tasks));
+    dispatch({ type: "deleted", payload: { task_info } });
     set_show_delete_model(false);
     show_hide_toast("تم حذف المهمة بنجاح");
   };

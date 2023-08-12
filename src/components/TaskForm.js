@@ -5,25 +5,21 @@ import { useToast } from "../context/toastContext";
 
 export default function TaskForm() {
   const [title_input, set_title_input] = useState("");
-  const { tasks, set_tasks } = useContext(TasksContext);
-  const { show_hide_toast } = useToast()
+  const { dispatch } = useContext(TasksContext);
+  const { show_hide_toast } = useToast();
 
   useEffect(() => {
-    if (localStorage.getItem("tasks")) {
-      set_tasks(JSON.parse(localStorage.getItem("tasks")));
-    }
+    dispatch({ type: "get" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handle_add_task = () => {
-    const new_task = {
-      id: tasks.length + 1,
-      title: title_input,
-      content: "",
-      is_complete: false,
-    };
-    set_tasks([...tasks, new_task]);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, new_task]));
+    dispatch({
+      type: "added",
+      payload: {
+        title_input: title_input,
+      },
+    });
     set_title_input("");
     show_hide_toast("تم أضافة المهمة بنجاح");
   };

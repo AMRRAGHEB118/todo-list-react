@@ -10,18 +10,16 @@ import { UpdatedTaskContext } from "../context/updatedTaskContext";
 import { OpenEditModelContext } from "../context/openEditModelContext";
 
 export default function Task({ task: { id, title, content, is_complete } }) {
-  const { tasks, set_tasks } = useContext(TasksContext);
+  const { dispatch } = useContext(TasksContext);
   const { set_task_info } = useContext(TaskInfoContext);
   const { set_show_delete_model } = useContext(OpenDeleteModelContext);
   const { set_updated_task } = useContext(UpdatedTaskContext);
   const { set_open_edit_model } = useContext(OpenEditModelContext);
 
   const handle_check = (id) => {
-    const new_tasks = tasks.map((t) => {
-      return t.id === id ? { ...t, is_complete: !t.is_complete } : t;
-    });
-    set_tasks(new_tasks);
-    localStorage.setItem("tasks", JSON.stringify(new_tasks));
+dispatch({type: "checked", payload : {
+  id
+}})
   };
 
   const handle_delete_click_open = () => {
